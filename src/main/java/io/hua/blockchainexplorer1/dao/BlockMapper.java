@@ -2,6 +2,8 @@ package io.hua.blockchainexplorer1.dao;
 
 import io.hua.blockchainexplorer1.po.Block;
 
+import java.util.List;
+
 public interface BlockMapper {
     int deleteByPrimaryKey(String blockhash);
 
@@ -14,4 +16,8 @@ public interface BlockMapper {
     int updateByPrimaryKeySelective(Block record);
 
     int updateByPrimaryKey(Block record);
+
+    void truncate();
+
+    List<Block> selectRecent();
 }

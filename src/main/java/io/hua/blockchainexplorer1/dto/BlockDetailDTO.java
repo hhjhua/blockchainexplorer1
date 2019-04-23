@@ -1,11 +1,11 @@
-package io.hua.blockchainexplorer1.po;
+package io.hua.blockchainexplorer1.dto;
 
 import java.util.Date;
+import java.util.List;
 
-public class Block {
+public class BlockDetailDTO {
+
     private String blockhash;
-
-    private Integer blockchainId;
 
     private Integer height;
 
@@ -27,20 +27,14 @@ public class Block {
 
     private String merkleRoot;
 
+    private List<TransactionInBlockDTO> transactions;
+
     public String getBlockhash() {
         return blockhash;
     }
 
     public void setBlockhash(String blockhash) {
-        this.blockhash = blockhash == null ? null : blockhash.trim();
-    }
-
-    public Integer getBlockchainId() {
-        return blockchainId;
-    }
-
-    public void setBlockchainId(Integer blockchainId) {
-        this.blockchainId = blockchainId;
+        this.blockhash = blockhash;
     }
 
     public Integer getHeight() {
@@ -88,7 +82,7 @@ public class Block {
     }
 
     public void setPrevBlockhash(String prevBlockhash) {
-        this.prevBlockhash = prevBlockhash == null ? null : prevBlockhash.trim();
+        this.prevBlockhash = prevBlockhash;
     }
 
     public String getNextBlockhash() {
@@ -96,7 +90,7 @@ public class Block {
     }
 
     public void setNextBlockhash(String nextBlockhash) {
-        this.nextBlockhash = nextBlockhash == null ? null : nextBlockhash.trim();
+        this.nextBlockhash = nextBlockhash;
     }
 
     public Double getOutputTotal() {
@@ -120,6 +114,14 @@ public class Block {
     }
 
     public void setMerkleRoot(String merkleRoot) {
-        this.merkleRoot = merkleRoot == null ? null : merkleRoot.trim();
+        this.merkleRoot = merkleRoot;
+    }
+
+    public List<TransactionInBlockDTO> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<TransactionInBlockDTO> transactions) {
+        this.transactions = transactions;
     }
 }

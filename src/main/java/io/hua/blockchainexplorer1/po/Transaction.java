@@ -1,5 +1,7 @@
 package io.hua.blockchainexplorer1.po;
 
+import java.util.Date;
+
 public class Transaction {
     private String txid;
 
@@ -63,7 +65,7 @@ public class Transaction {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

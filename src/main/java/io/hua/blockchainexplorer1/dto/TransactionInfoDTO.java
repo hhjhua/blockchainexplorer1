@@ -1,30 +1,35 @@
-package io.hua.blockchainexplorer1.po;
+package io.hua.blockchainexplorer1.dto;
 
-public class Transaction {
+import io.cjf.blockchainexplorer.po.TransactionDetail;
+
+import java.util.Date;
+import java.util.List;
+
+public class TransactionInfoDTO {
     private String txid;
 
     private String txhash;
-
-    private String blockhash;
 
     private Long size;
 
     private Integer weight;
 
-    private Integer time;
+    private Date time;
 
     private Double totalInput;
 
     private Double totalOutput;
 
-    private Double fess;
+    private Double fees;
+
+    private List<TxDetailInTxInfo> txDetails;
 
     public String getTxid() {
         return txid;
     }
 
     public void setTxid(String txid) {
-        this.txid = txid == null ? null : txid.trim();
+        this.txid = txid;
     }
 
     public String getTxhash() {
@@ -32,15 +37,7 @@ public class Transaction {
     }
 
     public void setTxhash(String txhash) {
-        this.txhash = txhash == null ? null : txhash.trim();
-    }
-
-    public String getBlockhash() {
-        return blockhash;
-    }
-
-    public void setBlockhash(String blockhash) {
-        this.blockhash = blockhash == null ? null : blockhash.trim();
+        this.txhash = txhash;
     }
 
     public Long getSize() {
@@ -59,11 +56,11 @@ public class Transaction {
         this.weight = weight;
     }
 
-    public Integer getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 
@@ -83,11 +80,19 @@ public class Transaction {
         this.totalOutput = totalOutput;
     }
 
-    public Double getFess() {
-        return fess;
+    public Double getFees() {
+        return fees;
     }
 
-    public void setFess(Double fess) {
-        this.fess = fess;
+    public void setFees(Double fees) {
+        this.fees = fees;
+    }
+
+    public List<TxDetailInTxInfo> getTxDetails() {
+        return txDetails;
+    }
+
+    public void setTxDetails(List<TxDetailInTxInfo> txDetails) {
+        this.txDetails = txDetails;
     }
 }
