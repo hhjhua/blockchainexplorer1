@@ -20,4 +20,5 @@ public interface BlockMapper {
     int truncate();
 
     List<Block> selectRecent();
+
 }

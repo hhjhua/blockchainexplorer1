@@ -1,7 +1,5 @@
 package io.hua.blockchainexplorer1.po;
 
-import java.util.Date;
-
 public class Transaction {
     private String txid;
 
@@ -13,7 +11,7 @@ public class Transaction {
 
     private Integer weight;
 
-    private Date time;
+    private Integer time;
 
     private Double totalInput;
 
@@ -61,13 +59,12 @@ public class Transaction {
         this.weight = weight;
     }
 
-    public Date getTime() {
-
+    public Integer getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
-        this.time=time;
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public Double getTotalInput() {

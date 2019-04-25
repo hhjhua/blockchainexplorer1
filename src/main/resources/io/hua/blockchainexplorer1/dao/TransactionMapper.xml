@@ -140,7 +140,6 @@
   </update>
   <!--custom sql-->
   <update id="truncate">
-    truncate table `transaction_detail`;
+    truncate table `transaction`;
   </update>
-
 </mapper>

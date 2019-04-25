@@ -19,6 +19,13 @@
     blockhash, blockchain_id, height, time, tx_size, size_on_disk, difficulty, prev_blockhash, 
     next_blockhash, output_total, transaction_fees, merkle_root
   </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
+
   <select id="selectRecent" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -26,15 +33,10 @@
     order by height desc
     limit 5
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from block
-    where blockhash = #{blockhash,jdbcType=CHAR}
-  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from block
-    where blockhash = #{blockhash,jdbcType=.CHAR}
+    where blockhash = #{blockhash,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="io.hua.blockchainexplorer1.po.Block">
     insert into block (blockhash, blockchain_id, height, 
@@ -166,9 +168,6 @@
     </set>
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
-  <update id="truncate">
-    truncate table block;
-  </update>
   <update id="updateByPrimaryKey" parameterType="io.hua.blockchainexplorer1.po.Block">
     update block
     set blockchain_id = #{blockchainId,jdbcType=INTEGER},
@@ -184,4 +183,9 @@
       merkle_root = #{merkleRoot,jdbcType=CHAR}
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
+  <!--custom sql-->
+  <update id="truncate">
+    truncate table block;
+  </update>
+
 </mapper>

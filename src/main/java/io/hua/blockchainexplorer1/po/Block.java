@@ -122,7 +122,4 @@ public class Block {
     public void setMerkleRoot(String merkleRoot) {
         this.merkleRoot = merkleRoot == null ? null : merkleRoot.trim();
     }
-
-    public void insert(Block block) {
-    }
 }
