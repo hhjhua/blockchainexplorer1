@@ -13,7 +13,7 @@ public class Transaction {
 
     private Integer weight;
 
-    private Integer time;
+    private Date time;
 
     private Double totalInput;
 
@@ -61,12 +61,13 @@ public class Transaction {
         this.weight = weight;
     }
 
-    public Integer getTime() {
+    public Date getTime() {
+
         return time;
     }
 
     public void setTime(Date time) {
-        this.time = time;
+        this.time=time;
     }
 
     public Double getTotalInput() {

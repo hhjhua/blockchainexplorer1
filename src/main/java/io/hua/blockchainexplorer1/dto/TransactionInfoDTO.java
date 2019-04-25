@@ -1,6 +1,5 @@
 package io.hua.blockchainexplorer1.dto;
 
-import io.cjf.blockchainexplorer.po.TransactionDetail;
 
 import java.util.Date;
 import java.util.List;
