@@ -30,5 +30,6 @@ public class AddressController {
                                                           @RequestParam(required = false, defaultValue = "1") Integer pageNum){
         List<TransactionDetail> transactionDetails = transactionDetailMapper.selectByAddress(address);
         return transactionDetails;
+
     }
 }
