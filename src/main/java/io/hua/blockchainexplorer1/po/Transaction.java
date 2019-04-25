@@ -1,5 +1,7 @@
 package io.hua.blockchainexplorer1.po;
 
+import java.util.Date;
+
 public class Transaction {
     private String txid;
 
@@ -11,7 +13,7 @@ public class Transaction {
 
     private Integer weight;
 
-    private Integer time;
+    private Date time;
 
     private Double totalInput;
 
@@ -24,7 +26,7 @@ public class Transaction {
     }
 
     public void setTxid(String txid) {
-        this.txid = txid == null ? null : txid.trim();
+        this.txid = txid;
     }
 
     public String getTxhash() {
@@ -32,7 +34,7 @@ public class Transaction {
     }
 
     public void setTxhash(String txhash) {
-        this.txhash = txhash == null ? null : txhash.trim();
+        this.txhash = txhash;
     }
 
     public String getBlockhash() {
@@ -40,7 +42,7 @@ public class Transaction {
     }
 
     public void setBlockhash(String blockhash) {
-        this.blockhash = blockhash == null ? null : blockhash.trim();
+        this.blockhash = blockhash;
     }
 
     public Long getSize() {
@@ -59,11 +61,11 @@ public class Transaction {
         this.weight = weight;
     }
 
-    public Integer getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 

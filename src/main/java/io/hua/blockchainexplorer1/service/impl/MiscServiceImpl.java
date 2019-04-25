@@ -78,7 +78,7 @@ public class MiscServiceImpl implements MiscService {
            block.setPrevBlockhash(blockOrigin.getString("previousblockhash"));
            block.setNextBlockhash(blockOrigin.getString("nextblockhash"));
            block.setMerkleRoot(blockOrigin.getString("merkleroot"));
-           block.insert(block);
+           blockMapper.insert(block);
 
            temphash=blockOrigin.getString("nextblockhash");
 
