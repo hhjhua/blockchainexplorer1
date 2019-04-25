@@ -2,6 +2,7 @@ package io.hua.blockchainexplorer1.dao;
 
 import io.hua.blockchainexplorer1.po.TransactionDetail;
 import io.hua.blockchainexplorer1.po.TransactionDetailKey;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface TransactionDetailMapper {
 
     int updateByPrimaryKey(TransactionDetail record);
 
-    void truncate();
+    int  truncate();
 
-    List<TransactionDetail> selectByAddress(String address);
+    List<TransactionDetail> selectByAddress(@Param("address") String address);
 }

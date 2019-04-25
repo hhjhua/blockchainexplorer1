@@ -17,7 +17,7 @@ public class BitcoinJsonRpcClient {
 
     public BitcoinJsonRpcClient() throws MalformedURLException {
         HashMap<String, String> headers = new HashMap<>();
-        String authStrOrig = String.format("%s:%s","cjf","123456");
+        String authStrOrig = String.format("%s:%s","hua","123456");
         String authStr = Base64.getEncoder().encodeToString(authStrOrig.getBytes());
         String authStrResult = String.format("Basic %s",authStr);
         headers.put("Authorization",authStrResult);

@@ -25,11 +25,13 @@ public class TransactionController {
 
     @GetMapping("/getTransactionInfoByTxid")
     public TransactionInfoDTO getTransactionInfoByTxid(@RequestParam String txid){
+
         return null;
     }
 
     @GetMapping("/getTransactionInfoByTxhash")
     public TransactionInfoDTO getTransactionInfoByTxhash(@RequestParam String txhash){
+
         return null;
     }
 

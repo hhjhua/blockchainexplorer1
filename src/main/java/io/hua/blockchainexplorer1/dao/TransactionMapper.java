@@ -15,5 +15,5 @@ public interface TransactionMapper {
 
     int updateByPrimaryKey(Transaction record);
 
-    void truncate();
+    int  truncate();
 }

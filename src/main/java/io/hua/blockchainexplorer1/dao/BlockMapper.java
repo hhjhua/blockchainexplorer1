@@ -17,7 +17,7 @@ public interface BlockMapper {
 
     int updateByPrimaryKey(Block record);
 
-    void truncate();
+    int truncate();
 
     List<Block> selectRecent();
 }
