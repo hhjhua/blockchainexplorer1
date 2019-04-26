@@ -19,7 +19,7 @@ public class Transaction {
 
     private Double totalOutput;
 
-    private Double fess;
+    private Double fees;
 
     public String getTxid() {
         return txid;
@@ -85,11 +85,11 @@ public class Transaction {
         this.totalOutput = totalOutput;
     }
 
-    public Double getFess() {
-        return fess;
+    public Double getFees() {
+        return fees;
     }
 
-    public void setFess(Double fess) {
-        this.fess = fess;
+    public void setFees(Double fees) {
+        this.fees = fees;
     }
 }

@@ -20,11 +20,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@SuppressWarnings("ALL")
+
 @Service
 public class MiscServiceImpl implements MiscService {
 
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private BitcoinApi bitcoinApi;
@@ -41,8 +41,6 @@ public class MiscServiceImpl implements MiscService {
     @Autowired
     private TransactionDetailMapper transactionDetailMapper;
 
-
-
     @Async
     @Override
     public void importFromHeight(Integer blockHeight, Boolean isClean) {
@@ -52,44 +50,45 @@ public class MiscServiceImpl implements MiscService {
     @Async
     @Override
     public void importFromHash(String blockHash, Boolean isClean) throws Throwable {
-       if (isClean){
-           blockMapper.truncate();
-           transactionDetailMapper.truncate();
-           transactionMapper.truncate();
-       }
-       String temphash=blockHash;
-       while (temphash!=null&&!temphash.isEmpty()){
-           JSONObject blockOrigin = bitcoinApi.getBlock(temphash);
-           Block block=new Block();
-           block.setBlockhash(blockOrigin.getString("hash"));
-           block.setBlockchainId(2);
-           block.setHeight(blockOrigin.getInteger("height"));
-           Long time=blockOrigin.getLong("time");
-           Date date=new Date(time * 10000);
-           block.setTime(date);
-           JSONArray txes=blockOrigin.getJSONArray("tx");
-           for (int i=0;i<txes.size();i++){
-               importTx(txes.getJSONObject(i),temphash,date);
-               
-           }
-           block.setTxSize(txes.size());
-           block.setSizeOnDisk(blockOrigin.getLong("size"));
-           block.setDifficulty(blockOrigin.getDouble("difficulty"));
-           block.setPrevBlockhash(blockOrigin.getString("previousblockhash"));
-           block.setNextBlockhash(blockOrigin.getString("nextblockhash"));
-           block.setMerkleRoot(blockOrigin.getString("merkleroot"));
-           blockMapper.insert(block);
+        if (isClean){
+            blockMapper.truncate();
+            transactionMapper.truncate();
+            transactionDetailMapper.truncate();
+        }
 
-           temphash=blockOrigin.getString("nextblockhash");
+        String temphash = blockHash;
 
-       }
+        while (temphash != null && !temphash.isEmpty()){
+            JSONObject blockOrigin = bitcoinApi.getBlock(temphash);
+            Block block = new Block();
+            block.setBlockhash(blockOrigin.getString("hash"));
+            block.setBlockchainId(2);
+            block.setHeight(blockOrigin.getInteger("height"));
+            Long time = blockOrigin.getLong("time");
+            Date date = new Date(time * 1000);
+            block.setTime(date);
+            JSONArray txes = blockOrigin.getJSONArray("tx");
+            for (int i = 0; i < txes.size(); i++) {
+                importTx(txes.getJSONObject(i),temphash,date);
+            }
+            block.setTxSize(txes.size());
+            block.setSizeOnDisk(blockOrigin.getLong("size"));
+            block.setDifficulty(blockOrigin.getDouble("difficulty"));
+            block.setPrevBlockhash(blockOrigin.getString("previousblockhash"));
+            block.setNextBlockhash(blockOrigin.getString("nextblockhash"));
+            block.setMerkleRoot(blockOrigin.getString("merkleroot"));
+            blockMapper.insert(block);
 
-       logger.info("sync finished");
+            temphash = blockOrigin.getString("nextblockhash");
+        }
+
+        logger.info("sync finished");
+
     }
 
-    private void importTx(JSONObject tx, String blockhash, Date time) {
-        Transaction transaction=new Transaction();
-        String txid=tx.getString("txid");
+    public void importTx(JSONObject tx, String blockhash, Date time) throws Throwable {
+        Transaction transaction = new Transaction();
+        String txid = tx.getString("txid");
         transaction.setTxid(txid);
         transaction.setTxhash(tx.getString("hash"));
         transaction.setBlockhash(blockhash);
@@ -100,17 +99,19 @@ public class MiscServiceImpl implements MiscService {
 
         JSONArray vouts = tx.getJSONArray("vout");
         for (int i = 0; i < vouts.size(); i++) {
-            importVinDetail(vouts.getJSONObject(i),txid);
+            importVoutDetail(vouts.getJSONObject(i),txid);
         }
 
         JSONArray vins = tx.getJSONArray("vin");
+
+        //todo vin0 coinbase tx
 
         for (int i = 1; i < vins.size(); i++) {
             importVinDetail(vins.getJSONObject(i),txid);
         }
     }
 
-    private void importVinDetail(JSONObject vout, String txid) {
+    public void importVoutDetail(JSONObject vout, String txid){
         TransactionDetail transactionDetail = new TransactionDetail();
         transactionDetail.setTxid(txid);
         JSONObject scriptPubKey = vout.getJSONObject("scriptPubKey");
@@ -128,7 +129,7 @@ public class MiscServiceImpl implements MiscService {
 
     }
 
-    private void importVoutDetail(JSONObject vin, String txidOrigin) throws  Throwable{
+    public void importVinDetail(JSONObject vin, String txidOrigin) throws Throwable {
         String txid = vin.getString("txid");
         Integer vout = vin.getInteger("vout");
 
@@ -150,7 +151,5 @@ public class MiscServiceImpl implements MiscService {
 
         transactionDetailMapper.insert(transactionDetail);
     }
-
-    }
-
+}
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BlockListDTO {
     private Integer height;
-    private Date time;
+    private long time;
     private Integer txSize;
     private Long sizeOnDisk;
 
@@ -16,11 +16,11 @@ public class BlockListDTO {
         this.height = height;
     }
 
-    public Date getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

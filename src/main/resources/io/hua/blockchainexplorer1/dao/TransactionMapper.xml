@@ -26,13 +26,13 @@
     where txid = #{txid,jdbcType=CHAR}
   </delete>
   <insert id="insert" parameterType="io.hua.blockchainexplorer1.po.Transaction">
-    insert into transaction (txid, txhash, blockhash, 
-      size, weight, time, 
-      total_input, total_output, fess
+    insert into transaction (txid, txhash, blockhash,
+      size, weight, time,
+      total_input, total_output, fees
       )
-    values (#{txid,jdbcType=CHAR}, #{txhash,jdbcType=CHAR}, #{blockhash,jdbcType=CHAR}, 
-      #{size,jdbcType=BIGINT}, #{weight,jdbcType=INTEGER}, #{time,jdbcType=INTEGER}, 
-      #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, #{fess,jdbcType=DOUBLE}
+    values (#{txid,jdbcType=CHAR}, #{txhash,jdbcType=CHAR}, #{blockhash,jdbcType=CHAR},
+      #{size,jdbcType=BIGINT}, #{weight,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP},
+      #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}
       )
   </insert>
   <insert id="insertSelective" parameterType="io.hua.blockchainexplorer1.po.Transaction">
