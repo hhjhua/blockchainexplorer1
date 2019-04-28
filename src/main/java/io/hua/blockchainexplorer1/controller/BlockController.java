@@ -25,7 +25,7 @@ public class BlockController {
     private BitcoinJsonRpcClient bitcoinJsonRpcClient;
 
     @Autowired
-    private BlockMapper blockMapper;
+    private BlockMapper mapper;
 
     @Value("${blockchain.recentCount}")
     private Integer recentCount;
@@ -70,7 +70,7 @@ public class BlockController {
 //            blockListDTOS.add(blockListDTO);
 //        }
 
-        List<Block> blocks = blockMapper.selectRecent();
+        List<Block> blocks = mapper.selectRecent();
         List<BlockListDTO> blockListDTOS = blocks.stream().map(block -> {
             BlockListDTO blockListDTO = new BlockListDTO();
             blockListDTO.setHeight(block.getHeight());

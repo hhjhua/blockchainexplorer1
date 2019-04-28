@@ -8,7 +8,7 @@ CREATE TABLE `block` (
   `blockhash` char(64) NOT NULL,
   `blockchain_id` int(11) NOT NULL,
   `height` int(11) NOT NULL,
-  `time` datetime NOT NULL,
+  `time` datetime(3) NOT NULL,
   `tx_size` int(20) NOT NULL,
   `size_on_disk` bigint(20) NOT NULL,
   `difficulty` double NOT NULL,
