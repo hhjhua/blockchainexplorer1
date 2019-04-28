@@ -18,7 +18,7 @@ import java.util.List;
 public class AddressController {
 
     @Autowired
-    private TransactionDetailMapper transactionDetailMapper;
+    private TransactionDetailMapper Mapper;
 
     @GetMapping("/getAddressInfo")
     public AddressInfo getAddressInfo(@RequestParam String address){
@@ -28,7 +28,7 @@ public class AddressController {
     @GetMapping("/getAddressTransactions")
     public List<TransactionDetail> getAddressTransactions(@RequestParam String address,
                                                           @RequestParam(required = false, defaultValue = "1") Integer pageNum){
-        List<TransactionDetail> transactionDetails = transactionDetailMapper.selectByAddress(address);
+        List<TransactionDetail> transactionDetails =Mapper.selectByAddress(address);
         return transactionDetails;
 
     }
